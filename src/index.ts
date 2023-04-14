@@ -1,6 +1,11 @@
 import * as anchor from "@project-serum/anchor";
 import { Wallet } from "@project-serum/anchor/dist/cjs/provider";
-import { Cluster } from "@solana/web3.js";
+import { Cluster, PublicKey } from "@solana/web3.js";
+import { IDL } from "./idl/stockpile";
+
+const PROGRAM_ID = new PublicKey(
+    "7XajpmvbZwBkGg9Rrz9fb8iHdy1uWhiSVwVsdrGUSk7P"
+  );
 
 export class SDK {
     readonly program: anchor.Program;
@@ -16,10 +21,11 @@ export class SDK {
     ) {
       this.cluster = cluster;
       this.provider = new anchor.AnchorProvider(connection, wallet, opts);
-      //TODO
-    //   this.program = new anchor.Program(
-
-    //   );
+      this.program = new anchor.Program(
+        IDL as anchor.Idl,
+        PROGRAM_ID,
+        this.provider
+      );
       this.rpcConnection = connection;
     }
 
