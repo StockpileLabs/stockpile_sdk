@@ -2,10 +2,7 @@ import * as anchor from "@project-serum/anchor";
 import { Wallet } from "@project-serum/anchor/dist/cjs/provider";
 import { Cluster, PublicKey } from "@solana/web3.js";
 import { IDL } from "./idl/stockpile";
-
-const PROGRAM_ID = new PublicKey(
-    "7XajpmvbZwBkGg9Rrz9fb8iHdy1uWhiSVwVsdrGUSk7P"
-  );
+import { STOCKPILE_PROGRAMS } from "./constants";
 
 export class SDK {
     readonly program: anchor.Program;
@@ -23,7 +20,7 @@ export class SDK {
       this.provider = new anchor.AnchorProvider(connection, wallet, opts);
       this.program = new anchor.Program(
         IDL as anchor.Idl,
-        PROGRAM_ID,
+        STOCKPILE_PROGRAMS[this.cluster] as anchor.web3.PublicKey,
         this.provider
       );
       this.rpcConnection = connection;
