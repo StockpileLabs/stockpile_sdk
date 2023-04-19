@@ -2,11 +2,6 @@ import { SDK } from "./index";
 import * as anchor from "@project-serum/anchor"
 import { utf8 } from "@project-serum/anchor/dist/cjs/utils/bytes";
 import { PublicKey, SystemProgram } from "@solana/web3.js";
-import {
-    useAnchorWallet,
-    useConnection,
-    useWallet,
-  } from "@solana/wallet-adapter-react";
 
 export class User {
     private readonly sdk: SDK;
