@@ -2,7 +2,7 @@ import { PublicKey, LAMPORTS_PER_SOL, Connection, clusterApiUrl } from '@solana/
 
 export async function airdrop(key:PublicKey) {
     try {
-      const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+      const connection = new Connection("http://127.0.0.1:8899", "confirmed");
       const airdropSignature = await connection.requestAirdrop(
         key,
         2 * LAMPORTS_PER_SOL

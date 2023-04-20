@@ -19,18 +19,23 @@ export class User {
         return {userPDA, bump}
     }
 
+    public async get(userAccount: anchor.web3.PublicKey) {
+        return await this.sdk.program.account.user.fetch(userAccount);
+    }
+
     public async create(username: string, image: any, owner:anchor.web3.PublicKey, pk:any) {
-        const { userPDA } = await this.getProgramDerivedUserAddress(pk)
+        const { userPDA } = await this.getProgramDerivedUserAddress(pk);
         const instructionMethodBuilder = this.sdk.program.methods
           .createUser(String(username), String(image))
           .accounts({
             userAccount: userPDA,
             authority: owner,
             systemProgram: SystemProgram.programId
-          })
+          });
         return {
-            instructionMethodBuilder
-        }
+            instructionMethodBuilder,
+            userPDA
+        };
     }
 
 }

@@ -3,6 +3,11 @@ import { Wallet } from "@project-serum/anchor/dist/cjs/provider";
 import { Cluster, PublicKey } from "@solana/web3.js";
 import { IDL } from "./idl/stockpile";
 import { STOCKPILE_PROGRAMS } from "./constants";
+import { User } from "./user";
+
+export {
+  User
+}
 
 export class SDK {
     readonly program: anchor.Program;
@@ -27,4 +32,5 @@ export class SDK {
     }
 
     //TODO
+    public user = new User(this);
 }
