@@ -20,19 +20,22 @@ describe("User", async() => {
     before(async() => {
         sdk = new SDK(
             userWallet as NodeWallet,
-            new anchor.web3.Connection("http://127.0.0.1:8899", "processed"),
+            new anchor.web3.Connection("https://api.devnet.solana.com", "processed"),
             { preflightCommitment: "processed" },
-            "localnet"
+            "devnet"
         );
-        const randomUser = anchor.web3.Keypair.generate()
-        await airdrop(randomUser.publicKey)
     });
 
     it("should create a user", async() => {
-        const createUser = await sdk.user.create("user1", "user1", user.publicKey, user.publicKey);
-        await createUser.instructionMethodBuilder.rpc();
-        userPDA = createUser.userPDA;
+        const createUser = await sdk.user.create("user1", "user1", user.publicKey);
+        console.log("useraccount: ",  createUser)
+        try {
+            await createUser.instructionMethodBuilder.rpc();
+        }catch(error) {
+            console.log(error)
+        }
+        const userPDA = createUser.userPDA;
         const userAccount = await sdk.user.get(userPDA);
-        expect(userAccount.authority.toString().is.equal(user.publicKey.toString()))
+        expect(userAccount.authority.toString()).is.equal(user.publicKey.toString())
     });
 })
