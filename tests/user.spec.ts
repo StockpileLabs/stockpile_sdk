@@ -14,8 +14,8 @@ const user = userWallet.payer
 
 describe("User", async() => {
     let sdk: SDK;
-    let userPDA: anchor.web3.PublicKey;
-    let randomUser: anchor.web3.PublicKey;
+    // let userPDA: anchor.web3.PublicKey;
+    // let randomUser: anchor.web3.PublicKey;
 
     before(async() => {
         sdk = new SDK(

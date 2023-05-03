@@ -4,9 +4,11 @@ import { Cluster, PublicKey } from "@solana/web3.js";
 import { IDL } from "./idl/stockpile";
 import { STOCKPILE_PROGRAMS } from "./constants";
 import { User } from "./user";
+import { Project } from "./project";
 
 export {
-  User
+  User,
+  Project
 }
 
 export class SDK {
@@ -33,4 +35,5 @@ export class SDK {
 
     //TODO
     public user = new User(this);
+    public project = new Project(this);
 }
