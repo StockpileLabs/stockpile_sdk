@@ -46,6 +46,9 @@ describe("Project", async() => {
         }
         const fundraiserPDA = createProject.fundraiserPDA
         const fundraiserAccount = await sdk.project.get(fundraiserPDA)
-        console.log("fundraiser details: ", fundraiserAccount)
+        // console.log("fundraiser details: ", fundraiserAccount)
+        const { creator } = fundraiserAccount
+        // console.log("creator details", creator)
+        expect(fundraiserAccount.creator).is.equal("user1")
     });
 })

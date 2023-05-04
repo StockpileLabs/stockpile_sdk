@@ -28,7 +28,7 @@ describe("User", async() => {
 
     it("should create a user", async() => {
         const createUser = await sdk.user.create("user1", "user1", user.publicKey);
-        console.log("useraccount: ",  createUser)
+        // console.log("useraccount: ",  createUser)
         try {
             await createUser.instructionMethodBuilder.rpc();
         }catch(error) {
